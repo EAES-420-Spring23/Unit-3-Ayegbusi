@@ -34,7 +34,15 @@ fish_stock <- fish_stock %>% select(MONTH, LAKE, STATE_PROV, SPECIES, WEIGHT)
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 2 here.
+```{r glimpse catch-data}
+#review the selected columns stored in catch_data
+glimpse(catch_data)
+```
+```{r glimpse fish-stock}
+#review the selected columns stored in fish_stock
+glimpse(fish_stock)
+```
+
 
 ### Exercise 3
 
