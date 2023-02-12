@@ -1,7 +1,7 @@
 ---
 title: "HW 03 - Great Lakes Fish Datasets"
-author: "Insert your name here"
-date: "Insert date here"
+author: "Kayode Ayegbusi"
+date: "02/15/2023"
 output: html_document
 ---
 
