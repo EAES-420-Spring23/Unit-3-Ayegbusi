@@ -28,7 +28,7 @@ Each row represent the amount of fish stocked on monthly basis with the correspo
 ### Exercise 2
 
 
-Add code chunks as needed.
+
 ```{r eval = TRUE}
 #create a new dataframe called salmon_stock using the filter function to filter three species of interest
 salmon_stock <- fish_stock %>%
@@ -52,7 +52,7 @@ The names of the variables and there respective data type are YEAR (numerical), 
 
 ### Exercise 3
 
-```{r eval = TRUE}
+```{r average-weight}
 #calculate average weight of salmon stock and add it to the original data set
 salmon_stock <- salmon_stock %>%
   mutate(
@@ -60,13 +60,21 @@ salmon_stock <- salmon_stock %>%
   )
 ```
 The mutate() function is used to calculate the average weight of salmon stock and add the new created variable call AVG_WEIGHT to the original dataset by dividing the weight by number of stock per observation
+
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
 
+```{r total-weight-and-salmon-per-event}
+#calaculate mean stock of fish and mean weight of stock per event for each lake
+salmon_stock %>% 
+  group_by(LAKE) %>% 
+  filter(YEAR > 2000) %>% 
+  summarize(MEAN_NO_STOCKED = mean(NO_STOCKED, na.rm = TRUE), # mean() won't return an NA if any NAs are present
+      MEAN_WEIGHT = mean(WEIGHT, na.rm = T)) %>% 
+  # arrange in descending order to have the highest at the top
+  arrange(desc(MEAN_NO_STOCKED))
+```
+Lake Huron has the largest mean fish per stocking event and mean weight weight per stocking event respectively
 ### Exercise 5
 
 Remove this text, and add your answer for Exercise 5 here.
