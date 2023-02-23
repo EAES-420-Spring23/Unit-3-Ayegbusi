@@ -34,7 +34,7 @@ Each row represent the amount of fish stocked on monthly basis with the correspo
 salmon_stock <- fish_stock %>%
   filter(
     SPECIES %in% c("ATS", "CHS", "COS"),
-#Only filters those with total fish_stock valeus reported
+#Only filters those with total fish_stock values reported
     !is.na(WEIGHT),
 #Filters out fish stock from all lakes except from Ontario
      LAKE != "ON"
@@ -74,14 +74,28 @@ salmon_stock %>%
   # arrange in descending order to have the highest at the top
   arrange(desc(MEAN_NO_STOCKED))
 ```
-Lake Huron has the largest mean fish per stocking event and mean weight weight per stocking event respectively
+Lake Huron has the largest mean fish per stocking event and mean weight per stocking event respectively
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
-
+```{r create-new-data-set-for-Trout-species}
+#create a new fish stock of Trout species only
+fish_stock %>%
+  filter(
+    SPECIES %in% c("BKT", "BRN", "LAT", "RBT", "TRT"), 
+#Only filters those with total fish_stock values reported
+    !is.na(WEIGHT),
+#Filters out fish stock from all lakes except from Ontario
+     LAKE != "ON") %>% 
+#create average fish weight using mutate
+  mutate(AVG_WEIGHT = WEIGHT/NO_STOCKED) %>% 
+#use summarise to calculate the  mean and total weight of Trout fish stock
+  group_by(LAKE) %>% 
+   summarize(MEAN_NO_TROUT = mean(NO_STOCKED, na.rm = TRUE), # mean() won't return an NA if any NAs are present
+      MEAN_WEIGHT = mean(WEIGHT, na.rm = T)) %>% 
+  # arrange in descending order to have the highest at the top
+  arrange(desc(MEAN_NO_TROUT))
+```
+Lake Michigan has the largest mean fish per stocking event and mean weight per stocking event respectively
 ### Exercise 6
 
 Remove this text, and add your answer for Exercise 6 here.

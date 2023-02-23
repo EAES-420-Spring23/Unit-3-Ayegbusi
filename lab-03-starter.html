@@ -381,7 +381,7 @@ weight</p>
 salmon_stock &lt;- fish_stock %&gt;%
   filter(
     SPECIES %in% c(&quot;ATS&quot;, &quot;CHS&quot;, &quot;COS&quot;),
-#Only filters those with total fish_stock valeus reported
+#Only filters those with total fish_stock values reported
     !is.na(WEIGHT),
 #Filters out fish stock from all lakes except from Ontario
      LAKE != &quot;ON&quot;
@@ -432,13 +432,33 @@ salmon_stock %&gt;%
 ## 4 ER              9000.        374.
 ## 5 SC               185.          0</code></pre>
 <p>Lake Huron has the largest mean fish per stocking event and mean
-weight weight per stocking event respectively ### Exercise 5</p>
-<p>Remove this text, and add your answer for Exercise 5 here. Add code
-chunks as needed. Don’t forget to label your code chunk. Do not use
-spaces in code chunk labels.</p>
-</div>
-<div id="exercise-6" class="section level3">
-<h3>Exercise 6</h3>
+weight per stocking event respectively ### Exercise 5</p>
+<pre class="r"><code>#create a new fish stock of Trout species only
+fish_stock %&gt;%
+  filter(
+    SPECIES %in% c(&quot;BKT&quot;, &quot;BRN&quot;, &quot;LAT&quot;, &quot;RBT&quot;, &quot;TRT&quot;), 
+#Only filters those with total fish_stock values reported
+    !is.na(WEIGHT),
+#Filters out fish stock from all lakes except from Ontario
+     LAKE != &quot;ON&quot;) %&gt;% 
+#create average fish weight using mutate
+  mutate(AVG_WEIGHT = WEIGHT/NO_STOCKED) %&gt;% 
+#use summarise to calculate the  mean and total weight of Trout fish stock
+  group_by(LAKE) %&gt;% 
+   summarize(MEAN_NO_TROUT = mean(NO_STOCKED, na.rm = TRUE), # mean() won&#39;t return an NA if any NAs are present
+      MEAN_WEIGHT = mean(WEIGHT, na.rm = T)) %&gt;% 
+  # arrange in descending order to have the highest at the top
+  arrange(desc(MEAN_NO_TROUT))</code></pre>
+<pre><code>## # A tibble: 5 × 3
+##   LAKE  MEAN_NO_TROUT MEAN_WEIGHT
+##   &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+## 1 MI           28995.        904.
+## 2 SU           28095.        708.
+## 3 HU           27983.        639.
+## 4 SC           24363.        878.
+## 5 ER           16231.        753.</code></pre>
+<p>Lake Michigan has the largest mean fish per stocking event and mean
+weight per stocking event respectively ### Exercise 6</p>
 <p>Remove this text, and add your answer for Exercise 6 here. Add code
 chunks as needed. Don’t forget to label your code chunk. Do not use
 spaces in code chunk labels.</p>
