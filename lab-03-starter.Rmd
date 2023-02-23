@@ -19,16 +19,37 @@ fish_stock <- read_csv("data/great-lakes-fish-stock.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+There are `r nrow(fish_stock)` observations  and `r ncol(fish_stock)` variables in fish_stock dataset.
+
+Each row represent the amount of fish stocked on monthly basis with the corresponding year, state/region, lake, species,  age in month, and weight
 
 
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 2 here.
+
 Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+```{r eval = TRUE}
+#create a new dataframe called salmon_stock using the filter function to filter three species of interest
+salmon_stock <- fish_stock %>%
+  filter(
+    SPECIES %in% c("ATS", "CHS", "COS"),
+#Only filters those with total fish_stock valeus reported
+    !is.na(WEIGHT),
+#Filters out fish stock from all lakes except from Ontario
+     LAKE != "ON"
+  )
+```
+
+```{r statistics-of-salmon-s6tock}
+nrow(salmon_stock)
+ncol(salmon_stock)
+names(salmon_stock)
+class(salmon_stock)
+salmon_stock
+```
+There are 5131 number of rows and 8 variables in the Salmon stock.
+The names of the variables and there respective data type are YEAR (numerical), MONTH (numerical), LAKE (Character), STATE_PROV (Character), SPECIES (Character), NO_STOCKED (numerical), AGEMONTH (numerical), WEIGHT(numerical)
 
 ### Exercise 3
 
