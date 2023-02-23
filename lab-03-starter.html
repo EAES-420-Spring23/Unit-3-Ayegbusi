@@ -387,6 +387,15 @@ salmon_stock &lt;- fish_stock %&gt;%
 #Filters out fish stock from all lakes except from Ontario
      LAKE != &quot;ON&quot;
   )</code></pre>
+<pre class="r"><code>nrow(salmon_stock)</code></pre>
+<pre><code>## [1] 5131</code></pre>
+<pre class="r"><code>ncol(salmon_stock)</code></pre>
+<pre><code>## [1] 8</code></pre>
+<pre class="r"><code>names(salmon_stock)</code></pre>
+<pre><code>## [1] &quot;YEAR&quot;       &quot;MONTH&quot;      &quot;LAKE&quot;       &quot;STATE_PROV&quot; &quot;SPECIES&quot;   
+## [6] &quot;NO_STOCKED&quot; &quot;AGEMONTH&quot;   &quot;WEIGHT&quot;</code></pre>
+<pre class="r"><code>class(salmon_stock)</code></pre>
+<pre><code>## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;</code></pre>
 <pre class="r"><code>salmon_stock</code></pre>
 <pre><code>## # A tibble: 5,131 × 8
 ##     YEAR MONTH LAKE  STATE_PROV SPECIES NO_STOCKED AGEMONTH WEIGHT
@@ -402,6 +411,11 @@ salmon_stock &lt;- fish_stock %&gt;%
 ##  9  1987     3 ER    PA         COS          98000       15  2750.
 ## 10  1987     4 ER    PA         COS          25000       16  1148.
 ## # … with 5,121 more rows</code></pre>
+<p>There are 5131 number of rows and 8 variables in the Salmon stock.
+The names of the variables and there respective data type are YEAR
+(numerical), MONTH (numerical), LAKE (Character), STATE_PROV
+(Character), SPECIES (Character), NO_STOCKED (numerical), AGEMONTH
+(numerical), WEIGHT(numerical)</p>
 </div>
 <div id="exercise-3" class="section level3">
 <h3>Exercise 3</h3>

@@ -46,7 +46,6 @@ nrow(salmon_stock)
 ncol(salmon_stock)
 names(salmon_stock)
 class(salmon_stock)
-salmon_stock
 ```
 There are 5131 number of rows and 8 variables in the Salmon stock.
 The names of the variables and there respective data type are YEAR (numerical), MONTH (numerical), LAKE (Character), STATE_PROV (Character), SPECIES (Character), NO_STOCKED (numerical), AGEMONTH (numerical), WEIGHT(numerical)
