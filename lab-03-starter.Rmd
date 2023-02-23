@@ -52,11 +52,14 @@ The names of the variables and there respective data type are YEAR (numerical), 
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
-
+```{r eval = TRUE}
+#calculate average weight of salmon stock and add it to the original data set
+salmon_stock <- salmon_stock %>%
+  mutate(
+    AVG_WEIGHT = WEIGHT / NO_STOCKED * 1000
+  )
+```
+The mutate() function is used to calculate the average weight of salmon stock and add the new created variable call AVG_WEIGHT to the original dataset by dividing the weight by number of stock per observation
 ### Exercise 4
 
 Remove this text, and add your answer for Exercise 4 here.
