@@ -24,33 +24,51 @@ fish_stock <- read_csv("data/great-lakes-fish-stock.csv")
 
 ```{r catch-data-subset}
 # select the columns of interest and save to overwrite the original dataframe object
-catch_data <- catch_data %>% select(year, lake, species, region, values)
+catch_data <- catch_data %>% 
+  select(year, lake, species, region, values)
 ```
 
 ```{r fish-stock-subset}
 #select the columns of interest and save to overwrite the original dataframe object
-fish_stock <- fish_stock %>% select(MONTH, LAKE, STATE_PROV, SPECIES, WEIGHT)
+fish_stock <- fish_stock %>%
+  select(YEAR, MONTH, LAKE, STATE_PROV, SPECIES, WEIGHT)
 ```
 
 ### Exercise 2
 
 ```{r glimpse catch-data}
 #review the selected columns stored in catch_data
-glimpse(catch_data)
+#glimpse(catch_data)
 ```
 ```{r glimpse fish-stock}
 #review the selected columns stored in fish_stock
-glimpse(fish_stock)
+#glimpse(fish_stock)
 ```
 
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+```{r filter-catch-data }
+# I want to filter out other information in the catch_data of no interest and retain data of interest
+#catch_data <- catch_data %>%
+#  filter(region == "U.S. Total",
+#         species ==  "CHS",
+#         lake == "MI",
+#         eval(TRUE))
+
+```
+
+```{r filter-fish-stock}
+# I want to filter out other information in the fish_stock of no interest and retain data of interest
+#fish_stock <- fish_stock %>%
+#  filter("MI" %in% c("MI","WI", "IL", "IN"),
+#        SPECIES == "LAT",
+#        LAKE == "MI",
+#        eval(TRUE))
+```
 
 ### Exercise 4
-
-Remove this text, and add your answer for Exercise 4 here.
+data_frame$
 
 ### Exercise 5
 
