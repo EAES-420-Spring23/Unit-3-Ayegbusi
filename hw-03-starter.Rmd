@@ -84,10 +84,12 @@ The last year in the catch_data is `r max(fish_stock$YEAR)`
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+
 ```{r stock-weight-yearly}
-fish_stock %>% 
-  
+#turn the monthly weight of the fish stock to yearly weight using group_by function and summarise()
+fish_stock_yearly <- fish_stock %>% 
+  group_by(YEAR) %>% 
+  summarise(STOCK_WEIGHT_YR = sum(WEIGHT, na.rm = T))
 
 ```
 
