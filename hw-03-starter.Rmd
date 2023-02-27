@@ -28,6 +28,8 @@ catch_data <- catch_data %>%
   select(year, lake, species, region, values)
 ```
 
+
+
 ```{r fish-stock-subset}
 #select the columns of interest and save to overwrite the original dataframe object
 fish_stock <- fish_stock %>%
@@ -38,11 +40,12 @@ fish_stock <- fish_stock %>%
 
 ```{r glimpse catch-data}
 #review the selected columns stored in catch_data
-#glimpse(catch_data)
+glimpse(catch_data)
 ```
+
 ```{r glimpse fish-stock}
 #review the selected columns stored in fish_stock
-#glimpse(fish_stock)
+glimpse(fish_stock)
 ```
 
 
@@ -50,44 +53,59 @@ fish_stock <- fish_stock %>%
 
 ```{r filter-catch-data }
 # I want to filter out other information in the catch_data of no interest and retain data of interest
-#catch_data <- catch_data %>%
-#  filter(region == "U.S. Total",
-#         species ==  "CHS",
-#         lake == "MI",
-#         eval(TRUE))
-
+catch_data <- catch_data %>%
+  filter(region == "U.S. Total",
+         species ==  "Chinook Salmon",
+         lake == "Michigan",
+         eval(TRUE))
+catch_data
 ```
+
 
 ```{r filter-fish-stock}
 # I want to filter out other information in the fish_stock of no interest and retain data of interest
-#fish_stock <- fish_stock %>%
-#  filter("MI" %in% c("MI","WI", "IL", "IN"),
-#        SPECIES == "LAT",
-#        LAKE == "MI",
-#        eval(TRUE))
+fish_stock <- fish_stock %>%
+  filter("MI" %in% c("MI","WI", "IL", "IN"),
+        SPECIES == "CHS",
+        LAKE == "MI",
+        eval(TRUE))
+fish_stock
 ```
 
+
 ### Exercise 4
-data_frame$
+There are `r nrow(catch_data)` observations and `r ncol(catch_data)` variables in the catch_data data set.
+The first year in the catch_data is `r min(catch_data$year)`
+The last year in the catch_data is `r max(catch_data$year)`
+
+There are `r nrow(fish_stock)` observations and `r ncol(fish_stock)` variables in the fish_stock data set.
+The first year in the catch_data is `r min(fish_stock$YEAR)`
+The last year in the catch_data is `r max(fish_stock$YEAR)`
 
 ### Exercise 5
 
 Remove this text, and add your answer for Exercise 5 here.
+```{r stock-weight-yearly}
+fish_stock %>% 
+  
+
+```
 
 ### Code chunks provided
 
 Remember to change eval = FALSE, to eval = TRUE, when you are ready to run the code/knit the document.
 
-```{r finalize-fish-stock, eval = FALSE}
+```{r finalize-fish-stock, eval = TRUE}
 fish_stock_yearly <- fish_stock_yearly %>% 
   rename(year = YEAR) %>% 
   mutate(stock_weight_yr_lbs = as.integer(STOCK_WEIGHT_YR * 0.454 / 1000)) %>% # 1 lb = 1 kg * 0.454
   select(year, stock_weight_yr_lbs)
 ```
 
-```{r finalize-catch-data, eval = FALSE}
+```{r finalize-catch-data, eval = TRUE}
 catch_data <- catch_data %>% 
   rename(catch_weight_yr_lbs = values)
+catch_weight_yr_lbs
 ```
 
 ### Exercise 6
