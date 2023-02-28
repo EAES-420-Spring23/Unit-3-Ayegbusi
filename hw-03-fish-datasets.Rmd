@@ -121,7 +121,7 @@ Next, let's simplify both datasets even further, so that they only contain U.S. 
 catch_data <- catch_data %>% 
   filter(region == "U.S. Total",
          species == "___",
-         lake == "___")
+         lake == "MI")
 ```
 
 ```{r filter-stock, eval = FALSE}

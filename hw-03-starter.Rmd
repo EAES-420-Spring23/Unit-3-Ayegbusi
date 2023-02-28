@@ -159,11 +159,11 @@ This code produced a dataset that retains only the observations that are present
 ### Exercise 7
 
 ```{r pivot-longer, eval = TRUE}
-#catch_data %>% 
-#  left_join(fish_stock_yearly) %>% 
-#  pivot_longer(names_to = "activity",
-#               values_to = "catch_weight_yr_lbs",
-#               cols = 5:6)
+catch_data %>% 
+  left_join(fish_stock_yearly) %>% 
+  pivot_longer(names_to = "activity",
+               values_to = "catch_weight_yr_lbs",
+               cols = 5:6)
 ```
 
 ### Exercise 8
