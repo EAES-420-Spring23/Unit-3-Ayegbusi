@@ -98,7 +98,34 @@ fish_stock %>%
 Lake Michigan has the largest mean fish per stocking event and mean weight per stocking event respectively
 ### Exercise 6
 
-Remove this text, and add your answer for Exercise 6 here.
-Add code chunks as needed.
-Don't forget to label your code chunk.
-Do not use spaces in code chunk labels.
+
+```{r faceted-plot}
+fish_stock %>% 
+  filter(
+    SPECIES %in% c("CHS", "BKT"),
+    #Only filters those with total fish_stock values reported
+    !is.na(NO_STOCKED)) %>% 
+#group by the variables of interest
+  group_by(YEAR, LAKE, SPECIES ) %>% 
+#calculate to annual total of each species
+  summarise(ANNUAL_SUM = sum(NO_STOCKED)) %>% 
+#plot each species of fish
+  ggplot(aes(x = YEAR, y = ANNUAL_SUM, color = SPECIES)) +
+  geom_point() +
+  geom_line() +
+  #plot each lake to each facet
+  facet_wrap(~LAKE, ncol =2) +
+  theme_bw() +
+  #label the title and axes
+  labs(
+    title = "FACETED PLOT OF CHINOOK SALMON AND BROOK TROUT SPECIES",
+    y = "ANNUAL TOTAL",
+    x = "YEAR"
+  )
+
+```
+The Chinook Salmon species is stocked at higher rate than the Brook Trout species.
+
+Lake michigan has the highest fish stocking activities.
+
+The fish stock reach highest around 1990 to 2000.
