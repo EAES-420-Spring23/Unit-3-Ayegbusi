@@ -99,25 +99,83 @@ Remember to change eval = FALSE, to eval = TRUE, when you are ready to run the c
 
 ```{r finalize-fish-stock, eval = TRUE}
 fish_stock_yearly <- fish_stock_yearly %>% 
+# rename the variable so that the two dataframes have thesame format that can be combined together
   rename(year = YEAR) %>% 
+# use mutate to convert the weight from kg to lbs
   mutate(stock_weight_yr_lbs = as.integer(STOCK_WEIGHT_YR * 0.454 / 1000)) %>% # 1 lb = 1 kg * 0.454
   select(year, stock_weight_yr_lbs)
 ```
 
 ```{r finalize-catch-data, eval = TRUE}
 catch_data <- catch_data %>% 
-  rename(catch_weight_yr_lbs = values)
-catch_weight_yr_lbs
+# rename the variable values to catch_weight_yr_lbs
+rename(catch_weight_yr_lbs = values)
+
 ```
 
 ### Exercise 6
 
-Remove this text, and add your answer for Exercise 6 here.
+
+```{r left-join}
+#use left_join function to join the two data sets together
+left_join(catch_data, fish_stock_yearly)
+```
+
+
+The line of code produced a combined dataset that has seventeen rows (observations) and six columns (variables), this combination retains common observations in both datasets and eliminate observations in fish_stock_yearly not found in catch_data but retains observations in catch_data not found in fish_stock_yearly.
+```{r right-join}
+#use right_join function to join the two data sets together
+right_join(catch_data, fish_stock_yearly)
+```
+The line of code produced a combined dataset that has fiftytwo rows (observations) and six columns (variables), this combination retains common observations in both datasets and eliminate observations in catch_data not found in fish_stock_yearly but retains observations in fish_stock_yearly not found in catch_data. 
+
+```{r inner-join}
+#use inner_join function to join the two data sets together
+inner_join(catch_data, fish_stock_yearly)
+inner_join(fish_stock_yearly, catch_data)
+```
+
+This line of code produced a combined dataset that only retains the observations in both datasets that matched and eliminates observation in catch_data that are not present in fish_stock_yearly and vice versa.
+
+```{r full-join}
+#use full_join function to join the two data sets together
+full_join(catch_data, fish_stock_yearly)
+```
+This line of code produced a combination of all the observations in both datasets.
+
+```{r anti-join-v1, eval = TRUE}
+catch_data %>% 
+  anti_join(fish_stock_yearly)
+```
+
+This code produced zero combination because every observation in catch_data are present in fish_stock_yearly data set
+
+```{r anti-join-v2, eval = TRUE}
+fish_stock_yearly %>% 
+  anti_join(catch_data)
+```
+This code produced a dataset that retains only the observations that are present in fish_stock_yearly but absent in catch_data
 
 ### Exercise 7
 
-Remove this text, and add your answer for Exercise 7 here.
+```{r pivot-longer, eval = TRUE}
+#catch_data %>% 
+#  left_join(fish_stock_yearly) %>% 
+#  pivot_longer(names_to = "activity",
+#               values_to = "catch_weight_yr_lbs",
+#               cols = 5:6)
+```
 
 ### Exercise 8
 
-Remove this text, and add your answer for Exercise 8 here.
+```{r final-visualization, eval = TRUE}
+#catch_data %>% 
+#  left_join(fish_stock_yearly) %>% 
+#  pivot_longer(names_to = "activity",
+#               values_to = "weight_lbs",
+#               cols = 5:6) %>% 
+#  ggplot(aes(x = year, y = weight_lbs, color = activity)) +
+#  geom_point() +
+#  geom_line() +
+#  theme_bw()
+```
