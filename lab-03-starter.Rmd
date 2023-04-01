@@ -61,7 +61,7 @@ salmon_stock <- salmon_stock %>%
 ```
 The mutate() function is used to calculate the average weight of salmon stock and add the new created variable call AVG_WEIGHT to the original dataset by dividing the weight by number of stock per observation
 
-### Exercise 4
+### Exercise 4 -.5
 
 
 ```{r total-weight-and-salmon-per-event}
